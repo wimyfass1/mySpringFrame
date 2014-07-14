@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+											http://www.springframework.org/schema/beans
+											http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+											http://www.springframework.org/schema/aop
+											http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+	
+	<bean id="transactionAdvice" class="book30.ch06._5._7.service.TransactionAdvice">
+		<property name="transactionManager" ref="transactionManager" />
+	</bean>
+	
+	<aop:config>
+		<aop:pointcut id="transactionPointcut" expression="execution(* *..*Service.upgrade*(..))" />
+		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="transactionPointcut" />
+	</aop:config>
+	
+	<!--
+	<aop:config>
+		<aop:advisor advice-ref="transactionAdvice" pointcut="execution(* *..*Service.upgrade*(..))" />
+	</aop:config>
+	-->
+		
+	<!--
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" />
+	
+	
+	<bean id="transactionPointcut" class="org.springframework.aop.aspectj.AspectJExpressionPointcut">
+		<property name="expression" value="execution(* *..*Service.upgrade*(..))" />
+	</bean>
+			
+	<bean id="transactionAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="advice" ref="transactionAdvice" />
+		<property name="pointcut" ref="transactionPointcut" />
+	</bean>
+	-->	
+	
+	<bean id="userService" class="book30.ch06._5._7.service.UserServiceImpl">
+		<property name="userDao" ref="userDao" />
+		<property name="mailSender" ref="mailSender" />
+	</bean>
+	
+	<bean id="testUserService" 
+				class="book30.ch06._5._7.service.UserServiceTest$TestUserServiceImpl" 
+				parent="userService" />
+</beans>
