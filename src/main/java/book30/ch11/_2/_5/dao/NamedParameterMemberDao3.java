@@ -1,30 +1,23 @@
-package book30.ch11._2._3.dao;
-
-import javax.sql.DataSource;
+package book30.ch11._2._5.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcDaoSupport;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import book30.ch11._2.domain.Member;
 import book30.ch11._2.domain.MemberRowMapper;
 
-public class NamedParameterMemberDao2 {
+public class NamedParameterMemberDao3 extends NamedParameterJdbcDaoSupport {
 	@Autowired
 	private MemberRowMapper memberRowMapper;
 	
-	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-
 	private SimpleJdbcInsert simpleJdbcInsert;
 	
-	@Autowired
-	public void init(DataSource dataSource) {
-		this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
-		
-		this.simpleJdbcInsert = new SimpleJdbcInsert(dataSource)
+	public void init() {	//<- Note!
+		this.simpleJdbcInsert = new SimpleJdbcInsert(getDataSource()) //<- Note!
 									.withTableName("MEMBERS")
 									.usingColumns("NUMBER", "NAME", "POINT")
 									.usingGeneratedKeyColumns("ID");
@@ -42,7 +35,7 @@ public class NamedParameterMemberDao2 {
 	
 	public Member getMemberById(int id) {
 		try {
-			return this.namedParameterJdbcTemplate.queryForObject("SELECT * FROM MEMBERS WHERE ID = :id", 
+			return this.getNamedParameterJdbcTemplate().queryForObject("SELECT * FROM MEMBERS WHERE ID = :id",  //<- Note!
 														new MapSqlParameterSource("id", id), 
 														this.memberRowMapper);
 		} catch(EmptyResultDataAccessException e) {

@@ -78,10 +78,6 @@ public class MemberService {
 		return this.namedParameterMemberDao.getMember4(number);
 	}
 	
-	public Member getMemberById(int id) {
-		return this.namedParameterMemberDao.getMemberById(id);
-	}
-	
 	//getMemberMap
 	public Map<String, Object> getMemberMap1(String number) {
 		return this.memberDao.getMemberMap1(number);
