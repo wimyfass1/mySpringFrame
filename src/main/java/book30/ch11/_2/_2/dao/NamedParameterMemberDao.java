@@ -1,5 +1,7 @@
 package book30.ch11._2._2.dao;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -7,10 +9,12 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 import book30.ch11._2.domain.Member;
 
@@ -105,5 +109,18 @@ public class NamedParameterMemberDao {
 	public List<Map<String, Object>> getMemberMapList2(int point) {
 		return this.namedParameterJdbcTemplate.queryForList("SELECT * FROM MEMBERS WHERE POINT > :point", 
 														new MapSqlParameterSource("point", point));
+	}
+	
+	//addMemberList
+	public int[] addMemberList2(final List<Member> memberList) {
+		SqlParameterSource[] sqlParameterSource = new SqlParameterSource[memberList.size()];
+		int i = 0;
+		for (Member member: memberList) {
+			sqlParameterSource[i] = new BeanPropertySqlParameterSource(member);
+			i++;
+		}
+		
+		int[] updateCount = this.namedParameterJdbcTemplate.batchUpdate("INSERT INTO MEMBERS(NUMBER, NAME, POINT) VALUES(:number, :name, :point)", sqlParameterSource);
+		return updateCount;
 	}
 }

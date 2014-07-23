@@ -112,4 +112,13 @@ public class MemberService {
 	public List<Map<String, Object>> getMemberMapList2(int point) {
 		return this.namedParameterMemberDao.getMemberMapList2(point);
 	}
+	
+	//addMemberList
+	public int[] addMemberList1(List<Member> memberList) {
+		return this.memberDao.addMemberList1(memberList);
+	}
+	
+	public int[] addMemberList2(List<Member> memberList) {
+		return this.namedParameterMemberDao.addMemberList2(memberList);
+	}
 }
