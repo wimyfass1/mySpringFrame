@@ -1,11 +1,9 @@
-package book30.ch11._2._2.dao;
+package book30.ch11._2.domain;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
-
-import book30.ch11._2.domain.Member;
 
 public class MemberRowMapper implements RowMapper<Member> {
 	@Override

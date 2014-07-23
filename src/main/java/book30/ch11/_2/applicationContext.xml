@@ -27,8 +27,14 @@
 	<bean id="nameParameterMemberDao" class="book30.ch11._2._2.dao.NamedParameterMemberDao">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+
+	<bean id="nameParameterMemberDao2" class="book30.ch11._2._3.dao.NamedParameterMemberDao2">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
 	
 	<bean id="memberService" class="book30.ch11._2._2.service.MemberService" />
-	
-	<bean id="memberRowMapper" class="book30.ch11._2._2.dao.MemberRowMapper" />
+
+	<bean id="memberService2" class="book30.ch11._2._3.service.MemberService2" />
+		
+	<bean id="memberRowMapper" class="book30.ch11._2.domain.MemberRowMapper" />
 </beans>

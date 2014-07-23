@@ -15,14 +15,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import book30.ch11._2.domain.Member;
+import book30.ch11._2.domain.MemberRowMapper;
 
 public class MemberDao {
 	@Autowired
 	private MemberRowMapper memberRowMapper;
 	
 	private JdbcTemplate jdbcTemplate;
-	
-	private SimpleJdbcInsert jdbcInsert;
 
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
@@ -114,6 +113,25 @@ public class MemberDao {
 											@Override
 											public int getBatchSize() {
 												return memberList.size();
+											}
+										});
+		return updateCount;
+	}
+	
+	//updateMemberList
+	public int[] updateMemberList1(final List<Map<String, Object>> memberMapList) {
+		int[] updateCount = this.jdbcTemplate.batchUpdate("UPDATE MEMBERS SET POINT = ? WHERE NUMBER = ?", 
+										new BatchPreparedStatementSetter() {
+											@Override
+											public void setValues(PreparedStatement ps, int i) throws SQLException {
+												Map<String, Object> memberMap = memberMapList.get(i);
+												ps.setInt(1, (Integer)memberMap.get("point"));
+												ps.setString(2, (String)memberMap.get("number"));
+											}
+										 
+											@Override
+											public int getBatchSize() {
+												return memberMapList.size();
 											}
 										});
 		return updateCount;

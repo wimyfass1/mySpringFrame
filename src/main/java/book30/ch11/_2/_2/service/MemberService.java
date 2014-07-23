@@ -78,6 +78,10 @@ public class MemberService {
 		return this.namedParameterMemberDao.getMember4(number);
 	}
 	
+	public Member getMemberById(int id) {
+		return this.namedParameterMemberDao.getMemberById(id);
+	}
+	
 	//getMemberMap
 	public Map<String, Object> getMemberMap1(String number) {
 		return this.memberDao.getMemberMap1(number);
@@ -120,5 +124,14 @@ public class MemberService {
 	
 	public int[] addMemberList2(List<Member> memberList) {
 		return this.namedParameterMemberDao.addMemberList2(memberList);
+	}
+	
+	//updateMemberList
+	public int[] updateMemberList1(List<Map<String, Object>> memberMapList) {
+		return this.memberDao.updateMemberList1(memberMapList);
+	}
+	
+	public int[] updateMemberList2(List<Map<String, Object>> memberMapList) {
+		return this.namedParameterMemberDao.udpateMemberList2(memberMapList);
 	}
 }
