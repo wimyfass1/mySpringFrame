@@ -1,5 +1,10 @@
-package book30.ch10._1._1.bean;
+package book30.ch10._2._3.scanningDomain;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Component;
+
+@Component("hello")
 public class Hello {
 	private String name;
 	private Printer printer;
@@ -24,6 +29,7 @@ public class Hello {
 		this.name = name;
 	}
 	
+	@Resource(name="printer")
 	public void setPrinter(Printer printer) {
 		this.printer = printer;
 	}

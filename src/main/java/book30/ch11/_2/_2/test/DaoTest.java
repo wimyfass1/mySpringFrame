@@ -1,0 +1,110 @@
+package book30.ch11._2._2.test;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.junit.Assert.assertThat;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import book30.ch11._2._2.service.MemberService;
+import book30.ch11._2.domain.Member;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations="../../applicationContext.xml")
+public class DaoTest {
+	@Autowired
+	private MemberService memberService;
+	
+	@Before
+	public void init() {
+	    this.memberService.deleteAll();
+	}
+
+	@Test
+	public void addTest() {
+		//addMember		
+		memberService.addMember1("001", "GilDong Hong", 90);
+		memberService.addMember2("002", "ChulSoo Kim", 80);
+		
+		Map<String, Object> memberMap = new HashMap<String, Object>();
+		memberMap.put("number", "003");
+		memberMap.put("name", "SungHo Ahn");
+		memberMap.put("point", 70);
+		memberService.addMember3(memberMap);
+		
+		Member member = new Member("004", "YounSim Lee", 60);
+		memberService.addMember4(member);
+
+		//numMembers		
+		assertThat(memberService.numMembers(), is(4));
+	}
+	
+	@Test
+	public void queryTest() {
+		memberService.addMember1("001", "GilDong Hong", 90);
+		memberService.addMember2("002", "ChulSoo Kim", 80);
+		
+		//numMembers
+		assertThat(memberService.numMembers(), is(2));
+		
+		//getMembersOverPoint
+		assertThat(memberService.numMembersOverPoint1(78), is(2));
+		assertThat(memberService.numMembersOverPoint2(78), is(2));
+		
+		//getMemberName, List 11-4
+		assertThat(memberService.getMemberName1("001"), is("GilDong Hong"));
+		assertThat(memberService.getMemberName2("001"), is("GilDong Hong"));
+		assertThat(memberService.getMemberName1("003"), is(nullValue()));
+		assertThat(memberService.getMemberName2("003"), is(nullValue()));
+		
+		//getMember
+		Member member1 = memberService.getMember1("001");
+		assertThat(member1.getName(), is("GilDong Hong"));
+		
+		Member member2 = memberService.getMember2("002");
+		assertThat(member2.getName(), is("ChulSoo Kim"));	
+		
+		Member member3 = memberService.getMember3("001");
+		assertThat(member3.getName(), is("GilDong Hong"));
+		
+		Member member4 = memberService.getMember4("002");
+		assertThat(member4.getName(), is("ChulSoo Kim"));
+		
+		//getMemberMap
+		Map<String, Object> memberMap1 = memberService.getMemberMap1("001");
+		assertThat((String)memberMap1.get("name"), is("GilDong Hong"));
+		
+		Map<String, Object> memberMap2 = memberService.getMemberMap2("002");
+		assertThat((String)memberMap2.get("name"), is("ChulSoo Kim"));
+		
+		//getMemberList
+		List<Member> memberList1 = memberService.getMemberList1(78);
+		assertThat(memberList1.size(), is(2));
+		
+		List<Member> memberList2 = memberService.getMemberList2(78);
+		assertThat(memberList2.size(), is(2));
+		
+		List<Member> memberList3 = memberService.getMemberList3(78);
+		assertThat(memberList3.size(), is(2));
+		
+		List<Member> memberList4 = memberService.getMemberList4(78);
+		assertThat(memberList4.size(), is(2));
+		
+		//getMemberMapList
+		List<Map<String, Object>> memberMapList1 = memberService.getMemberMapList1(78);
+		assertThat(memberMapList1.size(), is(2));
+		
+		List<Map<String, Object>> memberMapList2 = memberService.getMemberMapList2(78);
+		assertThat(memberMapList2.size(), is(2));
+	}
+}

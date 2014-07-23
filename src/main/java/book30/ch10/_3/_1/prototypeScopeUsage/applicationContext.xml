@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+											http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+											http://www.springframework.org/schema/context
+       								http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<context:component-scan base-package="book30.ch10._3._1.prototypeScopeUsage" />
+	<context:annotation-config />
+	
+	<bean id="serviceRequestFactory" class="org.springframework.beans.factory.config.ObjectFactoryCreatingFactoryBean">
+		<property name="targetBeanName" value="serviceRequest2" />
+	</bean>
+	
+	<bean class="org.springframework.beans.factory.config.ServiceLocatorFactoryBean">
+		<property name="serviceLocatorInterface" value="book30.ch10._3._1.prototypeScopeUsage.domain.ServiceRequest2Factory" />
+	</bean>
+	
+	<bean id="serviceRequestController3" class="book30.ch10._3._1.prototypeScopeUsage.controller.ServiceRequestController3">
+		<lookup-method name="getServiceRequest2" bean="serviceRequest2"/>
+	</bean>
+</beans>

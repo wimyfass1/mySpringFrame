@@ -1,4 +1,4 @@
-package book30.ch10._1._1.bean;
+package book30.ch10.domain;
 
 public class ConsolePrinter implements Printer {
 	@Override

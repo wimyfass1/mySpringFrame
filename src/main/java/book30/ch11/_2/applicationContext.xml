@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+											http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+											http://www.springframework.org/schema/context
+       								http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       								http://www.springframework.org/schema/util
+       								http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<context:annotation-config />
+	
+	<context:property-placeholder location="classpath:book30/ch11/_2/database.properties"/> 
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<property name="driverClass" value="${db.driverclass}" />
+		<property name="url" value="${db.url}" />
+		<property name="username" value="${db.username}" />
+		<property name="password" value="${db.password}" />
+	</bean>
+	
+	<bean id="memberDao" class="book30.ch11._2._2.dao.MemberDao">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean id="nameParameterMemberDao" class="book30.ch11._2._2.dao.NamedParameterMemberDao">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean id="memberService" class="book30.ch11._2._2.service.MemberService" />
+	
+	<bean id="memberRowMapper" class="book30.ch11._2._2.dao.MemberRowMapper" />
+</beans>
