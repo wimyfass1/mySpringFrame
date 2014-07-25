@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import book30.ch11._6._2.dao.NamedParameterMemberDao4;
 import book30.ch11.domain.Member;
 
-public class MemberService {	
+public class MemberService4 {	
 	@Autowired
 	private NamedParameterMemberDao4 namedParameterMemberDao;
 	
@@ -54,5 +54,12 @@ public class MemberService {
 	//addMemberList
 	public int[] addMemberList(List<Member> memberList) {
 		return this.namedParameterMemberDao.addMemberList(memberList);
+	}
+	
+	//addEachMemberList, 11-6-2
+	public void addEachMemberList(List<Member> memberList) {
+		for (Member member: memberList) {
+			this.namedParameterMemberDao.addMember(member);
+		}
 	}
 }
