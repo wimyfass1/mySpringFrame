@@ -1,4 +1,4 @@
-package book30.ch11._2.domain;
+package book30.ch11.domain;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

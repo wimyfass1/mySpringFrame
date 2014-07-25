@@ -8,7 +8,7 @@ public class TestPointcut extends StaticMethodMatcherPointcut {
 
 	@Override
 	public boolean matches(Method method, Class<?> clazz) {
-		return ("advised".equals(method.getName()));
+		return method.getName().startsWith("advised");
 	}
 
 }

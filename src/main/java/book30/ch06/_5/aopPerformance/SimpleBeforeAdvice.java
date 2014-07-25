@@ -7,7 +7,7 @@ import org.springframework.aop.MethodBeforeAdvice;
 public class SimpleBeforeAdvice implements MethodBeforeAdvice {
 
 	@Override
-	public void before(Method arg0, Object[] arg1, Object arg2) throws Throwable {
-		System.out.println("Output in Advice");
+	public void before(Method method, Object[] arg1, Object arg2) throws Throwable {
+		System.out.println("Output in SimpleBeforeAdvice: " + method.getName());
 	}
 }

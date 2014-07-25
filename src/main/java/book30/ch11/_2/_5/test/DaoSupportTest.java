@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import book30.ch11._2._2.service.MemberService;
 import book30.ch11._2._5.service.MemberService3;
-import book30.ch11._2.domain.Member;
+import book30.ch11.domain.Member;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations="../../applicationContext.xml")

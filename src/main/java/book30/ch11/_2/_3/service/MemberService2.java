@@ -3,7 +3,7 @@ package book30.ch11._2._3.service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import book30.ch11._2._3.dao.NamedParameterMemberDao2;
-import book30.ch11._2.domain.Member;
+import book30.ch11.domain.Member;
 
 public class MemberService2 {
 	@Autowired

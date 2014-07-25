@@ -13,8 +13,8 @@ import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
-import book30.ch11._2.domain.Member;
-import book30.ch11._2.domain.MemberRowMapper;
+import book30.ch11.domain.Member;
+import book30.ch11.domain.MemberRowMapper;
 
 public class NamedParameterMemberDao {
 	@Autowired

@@ -40,5 +40,5 @@
 	
 	<bean id="memberService3" class="book30.ch11._2._5.service.MemberService3" />
 		
-	<bean id="memberRowMapper" class="book30.ch11._2.domain.MemberRowMapper" />
+	<bean id="memberRowMapper" class="book30.ch11.domain.MemberRowMapper" />
 </beans>

@@ -57,56 +57,56 @@ public class ProxyPerfTest {
         
         // test advised method
         System.out.println("Testing Advised Method");
-        before = System.currentTimeMillis();
-        for(int x = 0; x < 500000; x++) {
+        before = System.nanoTime();
+        for(int x = 0; x < 1; x++) {
             bean.advisedMethod();
         }
-        after = System.currentTimeMillis();;
-        
-        System.out.println("Took " + (after - before) + " ms");
+        after = System.nanoTime();;
+       
+        System.out.println("Took " + (after - before) / 1000.0 + " micro seconds");
         
         // testing unadvised method
         System.out.println("Testing Unadvised Method");
-        before = System.currentTimeMillis(); 
-        for(int x = 0; x < 500000; x++) {
+        before = System.nanoTime(); 
+        for(int x = 0; x < 1; x++) {
             bean.unadvisedMethod();
         }
-        after = System.currentTimeMillis();;
+        after = System.nanoTime();;
         
-        System.out.println("Took " + (after - before) + " ms");
+        System.out.println("Took " + (after - before) / 1000.0 + " micro seconds");
         
         // testing equals() method
         System.out.println("Testing equals() Method");
-        before = System.currentTimeMillis(); 
-        for(int x = 0; x < 500000; x++) {
+        before = System.nanoTime(); 
+        for(int x = 0; x < 1; x++) {
             bean.equals(bean);
         }
-        after = System.currentTimeMillis();;
+        after = System.nanoTime();;
         
-        System.out.println("Took " + (after - before) + " ms");
+        System.out.println("Took " + (after - before) / 1000.0 + " micro seconds");
         
         // testing hashCode() method
         System.out.println("Testing hashCode() Method");
-        before = System.currentTimeMillis(); 
-        for(int x = 0; x < 500000; x++) {
+        before = System.nanoTime(); 
+        for(int x = 0; x < 1; x++) {
             bean.hashCode();
         }
-        after = System.currentTimeMillis();;
+        after = System.nanoTime();;
         
-        System.out.println("Took " + (after - before) + " ms");
+        System.out.println("Took " + (after - before) / 1000.0 + " micro seconds");
         
         // testing method on Advised
         Advised advised = (Advised)bean;
         
         System.out.println("Testing Advised.getTargetClass() Method");
         Class<?> clazz = null;
-        before = System.currentTimeMillis(); 
-        for(int x = 0; x < 500000; x++) {
+        before = System.nanoTime(); 
+        for(int x = 0; x < 1; x++) {
             clazz = advised.getTargetClass();
         }
-        after = System.currentTimeMillis();
+        after = System.nanoTime();
         System.out.println(clazz.getName());
-        System.out.println("Took " + (after - before) + " ms");
+        System.out.println("Took " + (after - before) / 1000.0 + " micro seconds");
         
         System.out.println(">>>\n");
     }

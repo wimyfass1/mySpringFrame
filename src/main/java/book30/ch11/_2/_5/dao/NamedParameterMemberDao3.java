@@ -7,8 +7,8 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcDaoSupport;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
-import book30.ch11._2.domain.Member;
-import book30.ch11._2.domain.MemberRowMapper;
+import book30.ch11.domain.Member;
+import book30.ch11.domain.MemberRowMapper;
 
 public class NamedParameterMemberDao3 extends NamedParameterJdbcDaoSupport {
 	@Autowired
