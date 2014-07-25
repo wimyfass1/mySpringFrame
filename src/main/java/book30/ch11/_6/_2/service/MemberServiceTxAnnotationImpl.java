@@ -2,20 +2,18 @@ package book30.ch11._6._2.service;
 
 import java.util.List;
 
-import javax.transaction.Transaction;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 
-import book30.ch11._6._2.dao.NamedParameterMemberDao4;
+import book30.ch11._6._2.dao.MemberDao;
 import book30.ch11.domain.Member;
 
-public class MemberService4 {	
+public class MemberServiceTxAnnotationImpl implements MemberServiceTxAnnotation{	
 	@Autowired
-	private NamedParameterMemberDao4 namedParameterMemberDao;
+	private MemberDao namedParameterMemberDao;
 	
 	private TransactionTemplate transactionTemplate;
 	
@@ -69,24 +67,10 @@ public class MemberService4 {
 		return this.namedParameterMemberDao.addMemberList(memberList);
 	}
 	
-	//addEachMemberList, 11-48, page 980
-	public void addEachMemberListWithoutTransaction(List<Member> memberList) {
+	//addEachMemberList
+	public void addEachMemberListWithTransaction(List<Member> memberList) {
 		for (Member member: memberList) {
 			this.namedParameterMemberDao.addMember(member);
 		}
-	}
-	
-	public void addEachMemberListWithTransaction(final List<Member> memberList) {
-		this.transactionTemplate.execute(new TransactionCallback<Object>() {
-			public Object doInTransaction(TransactionStatus status) {
-				System.out.println("isNewTransaction: " + status.isNewTransaction());
-				System.out.println("isCompleted1: " + status.isCompleted());
-				for (Member member: memberList) {
-					namedParameterMemberDao.addMember(member);
-				}
-				System.out.println("isCompleted2: " + status.isCompleted());
-				return null;
-			}
-		});
 	}
 }

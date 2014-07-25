@@ -15,7 +15,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import book30.ch11.domain.Member;
 import book30.ch11.domain.MemberRowMapper;
 
-public class NamedParameterMemberDao4 {
+public class MemberDao {
 	@Autowired
 	private MemberRowMapper memberRowMapper;
 	
