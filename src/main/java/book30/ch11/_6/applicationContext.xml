@@ -20,6 +20,10 @@
 		<property name="password" value="${db.password}" />
 	</bean>
 	
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
 	<bean id="nameParameterMemberDao" class="book30.ch11._6._2.dao.NamedParameterMemberDao4">
 		<property name="dataSource" ref="dataSource" />
 	</bean>

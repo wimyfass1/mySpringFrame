@@ -23,7 +23,7 @@ import book30.ch11.domain.Member;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations="../../applicationContext.xml")
-public class DaoTest {
+public class TransactionTest {
 	@Autowired
 	private MemberService4 memberService;
 	
@@ -39,9 +39,9 @@ public class DaoTest {
 		memberList.add(new Member("0000000001", "GilDong Hong", 90));
 		memberList.add(new Member("0000000002", "ChulSoo Kim", 80));
 		memberList.add(new Member("0000000003", "SungHo Ahn", 70));
+		//memberList.add(new Member("0000000004", "YounSim Lee", 60));
 		memberList.add(new Member("00000000004", "YounSim Lee", 60));
-		memberService.addEachMemberList(memberList);
-		
-		assertThat(memberService.numMembers(), is(3));
+		//memberService.addEachMemberListWithoutTransaction(memberList);
+		memberService.addEachMemberListWithTransaction(memberList);
 	}
 }

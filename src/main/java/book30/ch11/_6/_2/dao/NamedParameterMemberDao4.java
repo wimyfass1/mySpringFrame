@@ -5,6 +5,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -32,7 +33,7 @@ public class NamedParameterMemberDao4 {
 	//addMember
 	public void addMember(Member member) {
 		this.namedParameterJdbcTemplate.update("INSERT INTO MEMBERS(NUMBER, NAME, POINT) VALUES(:number, :name, :point)", 
-												new BeanPropertySqlParameterSource(member));
+													new BeanPropertySqlParameterSource(member));
 	}
 	
 	//numMembers
