@@ -3,10 +3,6 @@ package book30.ch11._6._2.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.TransactionCallback;
-import org.springframework.transaction.support.TransactionTemplate;
 
 import book30.ch11._6._2.dao.MemberDao;
 import book30.ch11.domain.Member;
@@ -14,13 +10,6 @@ import book30.ch11.domain.Member;
 public class MemberServiceTxAnnotationImpl implements MemberServiceTxAnnotation{	
 	@Autowired
 	private MemberDao namedParameterMemberDao;
-	
-	private TransactionTemplate transactionTemplate;
-	
-	@Autowired
-	public void init(PlatformTransactionManager transactionManager) {
-		this.transactionTemplate = new TransactionTemplate(transactionManager);
-	}
 	
 	//deleteAll	
 	public void deleteAll() {
