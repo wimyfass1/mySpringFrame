@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import book30.ch11.domain.Member;
 import book30.ch11.domain.MemberRowMapper;
 
-public class NamedParameterMemberDao3 extends NamedParameterJdbcDaoSupport {
+public class NamedParameterMemberDaoImpl3 extends NamedParameterJdbcDaoSupport {
 	@Autowired
 	private MemberRowMapper memberRowMapper;
 	

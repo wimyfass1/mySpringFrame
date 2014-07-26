@@ -12,7 +12,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import book30.ch11.domain.Member;
 import book30.ch11.domain.MemberRowMapper;
 
-public class NamedParameterMemberDao2 {
+public class NamedParameterMemberDaoImpl2 {
 	@Autowired
 	private MemberRowMapper memberRowMapper;
 	

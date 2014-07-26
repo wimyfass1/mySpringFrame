@@ -12,12 +12,11 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import book30.ch11.domain.Member;
 import book30.ch11.domain.MemberRowMapper;
 
-public class MemberDao {
+public class PositionedParameterMemberDaoImpl {
 	@Autowired
 	private MemberRowMapper memberRowMapper;
 	

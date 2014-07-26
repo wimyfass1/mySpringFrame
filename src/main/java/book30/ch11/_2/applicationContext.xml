@@ -20,17 +20,17 @@
 		<property name="password" value="${db.password}" />
 	</bean>
 	
-	<bean id="memberDao" class="book30.ch11._2._2.dao.MemberDao">
+	<bean id="memberDao" class="book30.ch11._2._2.dao.PositionedParameterMemberDaoImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<bean id="nameParameterMemberDao" class="book30.ch11._2._2.dao.NamedParameterMemberDao">
+	<bean id="nameParameterMemberDao" class="book30.ch11._2._2.dao.NamedParameterMemberDaoImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-	<bean id="nameParameterMemberDao2" class="book30.ch11._2._3.dao.NamedParameterMemberDao2" />
+	<bean id="nameParameterMemberDao2" class="book30.ch11._2._3.dao.NamedParameterMemberDaoImpl2" />
 	
-	<bean id="nameParameterMemberDao3" class="book30.ch11._2._5.dao.NamedParameterMemberDao3" init-method="init">
+	<bean id="nameParameterMemberDao3" class="book30.ch11._2._5.dao.NamedParameterMemberDaoImpl3" init-method="init">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
