@@ -5,16 +5,16 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import book30.ch11._2._2.dao.MemberDao;
-import book30.ch11._2._2.dao.NamedParameterMemberDao;
+import book30.ch11._2._2.dao.PositionedParameterMemberDaoImpl;
+import book30.ch11._2._2.dao.NamedParameterMemberDaoImpl;
 import book30.ch11.domain.Member;
 
 public class MemberService {
 	@Autowired
-	private MemberDao memberDao;
+	private PositionedParameterMemberDaoImpl memberDao;
 	
 	@Autowired
-	private NamedParameterMemberDao namedParameterMemberDao;
+	private NamedParameterMemberDaoImpl namedParameterMemberDao;
 	
 	//deleteAll	
 	public void deleteAll() {

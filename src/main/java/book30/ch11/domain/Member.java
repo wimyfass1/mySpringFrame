@@ -17,6 +17,13 @@ public class Member implements Serializable {
 		
 	}
 	
+	public Member(String number, String name, int point) {
+		super();
+		this.number = number;
+		this.name = name;
+		this.point = point;
+	}
+	
 	public Member(String number, String name, int point, Contact contact) {
 		super();
 		this.number = number;
