@@ -16,7 +16,9 @@ public class NamedParameterMemberDaoImpl3 extends NamedParameterJdbcDaoSupport {
 	
 	private SimpleJdbcInsert simpleJdbcInsert;
 	
-	public void init() {	//<- Note!
+	@Override
+	public void initTemplateConfig() {	//<- Note!
+		super.initTemplateConfig();
 		this.simpleJdbcInsert = new SimpleJdbcInsert(getDataSource()) //<- Note!
 									.withTableName("MEMBERS")
 									.usingColumns("NUMBER", "NAME", "POINT")

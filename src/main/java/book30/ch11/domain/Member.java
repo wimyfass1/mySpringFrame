@@ -37,7 +37,8 @@ public class Member implements Serializable {
 	}
 	public void setId(int id) {
 		this.id = id;
-		contact.setUserId(id);
+		if (contact != null)
+			contact.setUserId(id);
 	}
 	public String getNumber() {
 		return number;
