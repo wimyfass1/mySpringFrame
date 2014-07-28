@@ -19,7 +19,6 @@
 	<context:annotation-config />
 	<tx:annotation-driven />
 	
-	
 	<context:property-placeholder location="classpath:book30/ch11/sql/database.properties"/> 
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 		<property name="driverClass" value="${db.driverclass}" />
@@ -36,7 +35,7 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<bean id="accountService" class="book30.ch11.txAttributes.service.MemberServiceImpl" />
+	<bean id="accountService" class="book30.ch11.txAttributes.service.AccountServiceImpl" />
 	
-	<bean id="dbUtil" class="book30.ch11.txAttributes.test.DbUtil" init-method="initialize" />
+	<bean id="dbUtil" class="book30.ch11.txAttributes.test.DBUtil" init-method="initialize" />
 </beans>

@@ -27,7 +27,7 @@ public class AccountDaoImpl implements AccountDao {
 
 	@Override
 	public void insert(Account account){
-		String insertSql ="INSERT INTO ACCOUNTS (NUMBER, BALANCE) VALUES(:balance, :number);";
+		String insertSql ="INSERT INTO ACCOUNTS (NUMBER, BALANCE) VALUES(:number, :balance);";
 		namedParameterJdbcTemplate.update(insertSql, new BeanPropertySqlParameterSource(account));
 	}
 	
