@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS `members`;
 CREATE TABLE `members` (
   `id` int(32) unsigned NOT NULL AUTO_INCREMENT,
   `number` varchar(10) NOT NULL,

@@ -17,6 +17,8 @@
 											http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
 	<context:annotation-config />
+	<tx:annotation-driven />
+	
 	
 	<context:property-placeholder location="classpath:book30/ch11/sql/database.properties"/> 
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
@@ -30,13 +32,11 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<bean id="memberDao" class="book30.ch11.isolation.dao.MemberDao">
+	<bean id="accountDao" class="book30.ch11.txAttributes.dao.AccountDaoImpl">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<bean id="memberRowMapper" class="book30.ch11.domain.MemberRowMapper" />
-		
-	<bean id="memberService" class="book30.ch11.isolation.service.MemberServiceImpl" />
-		
-	<tx:annotation-driven />
+	<bean id="accountService" class="book30.ch11.txAttributes.service.MemberServiceImpl" />
+	
+	<bean id="dbUtil" class="book30.ch11.txAttributes.test.DbUtil" init-method="initialize" />
 </beans>
