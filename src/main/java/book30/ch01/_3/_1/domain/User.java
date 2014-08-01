@@ -1,4 +1,4 @@
-package book30.ch01._1.domain;
+package book30.ch01._3._1.domain;
 
 
 public class User {
