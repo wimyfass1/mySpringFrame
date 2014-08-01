@@ -1,5 +1,7 @@
 package book30.ch11._2._2.dao;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -7,12 +9,14 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import book30.ch11._2.domain.Member;
+import book30.ch11.domain.Member;
+import book30.ch11.domain.MemberRowMapper;
 
-public class MemberDao {
+public class PositionedParameterMemberDaoImpl {
 	@Autowired
 	private MemberRowMapper memberRowMapper;
 	
@@ -93,9 +97,42 @@ public class MemberDao {
 		return this.jdbcTemplate.queryForList("SELECT * FROM MEMBERS WHERE POINT > ?", point);
 	}
 	
-	/*
-	public int[] addMembers1(Map<String, Object>[] memberMaps) {
-		this.jdbcTemplate.batchUpdate(sql, batchArgs, argTypes)
+	//addMemberList
+	public int[] addMemberList1(final List<Member> memberList) {
+		int[] updateCount = this.jdbcTemplate.batchUpdate("INSERT INTO MEMBERS(NUMBER, NAME, POINT) VALUES(?, ?, ?)", 
+										new BatchPreparedStatementSetter() {
+											@Override
+											public void setValues(PreparedStatement ps, int i) throws SQLException {
+												Member member = memberList.get(i);
+												ps.setString(1, member.getNumber());
+												ps.setString(2, member.getName());
+												ps.setInt(3, member.getPoint() );
+											}
+										 
+											@Override
+											public int getBatchSize() {
+												return memberList.size();
+											}
+										});
+		return updateCount;
 	}
-	*/
+	
+	//updateMemberList
+	public int[] updateMemberList1(final List<Map<String, Object>> memberMapList) {
+		int[] updateCount = this.jdbcTemplate.batchUpdate("UPDATE MEMBERS SET POINT = ? WHERE NUMBER = ?", 
+										new BatchPreparedStatementSetter() {
+											@Override
+											public void setValues(PreparedStatement ps, int i) throws SQLException {
+												Map<String, Object> memberMap = memberMapList.get(i);
+												ps.setInt(1, (Integer)memberMap.get("point"));
+												ps.setString(2, (String)memberMap.get("number"));
+											}
+										 
+											@Override
+											public int getBatchSize() {
+												return memberMapList.size();
+											}
+										});
+		return updateCount;
+	}
 }

@@ -5,16 +5,16 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import book30.ch11._2._2.dao.MemberDao;
-import book30.ch11._2._2.dao.NamedParameterMemberDao;
-import book30.ch11._2.domain.Member;
+import book30.ch11._2._2.dao.PositionedParameterMemberDaoImpl;
+import book30.ch11._2._2.dao.NamedParameterMemberDaoImpl;
+import book30.ch11.domain.Member;
 
 public class MemberService {
 	@Autowired
-	private MemberDao memberDao;
+	private PositionedParameterMemberDaoImpl memberDao;
 	
 	@Autowired
-	private NamedParameterMemberDao namedParameterMemberDao;
+	private NamedParameterMemberDaoImpl namedParameterMemberDao;
 	
 	//deleteAll	
 	public void deleteAll() {
@@ -111,5 +111,23 @@ public class MemberService {
 
 	public List<Map<String, Object>> getMemberMapList2(int point) {
 		return this.namedParameterMemberDao.getMemberMapList2(point);
+	}
+	
+	//addMemberList
+	public int[] addMemberList1(List<Member> memberList) {
+		return this.memberDao.addMemberList1(memberList);
+	}
+	
+	public int[] addMemberList2(List<Member> memberList) {
+		return this.namedParameterMemberDao.addMemberList2(memberList);
+	}
+	
+	//updateMemberList
+	public int[] updateMemberList1(List<Map<String, Object>> memberMapList) {
+		return this.memberDao.updateMemberList1(memberMapList);
+	}
+	
+	public int[] updateMemberList2(List<Map<String, Object>> memberMapList) {
+		return this.namedParameterMemberDao.udpateMemberList2(memberMapList);
 	}
 }

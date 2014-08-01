@@ -11,15 +11,17 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
-import book30.ch11._2.domain.Member;
+import book30.ch11.domain.Member;
+import book30.ch11.domain.MemberRowMapper;
 
-public class NamedParameterMemberDao {
+public class NamedParameterMemberDaoImpl {
 	@Autowired
 	private MemberRowMapper memberRowMapper;
 	
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-
+	
 	public void setDataSource(DataSource dataSource) {
 		this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
 	}
@@ -78,6 +80,16 @@ public class NamedParameterMemberDao {
 		}
 	}
 	
+	public Member getMemberById(int id) {
+		try {
+			return this.namedParameterJdbcTemplate.queryForObject("SELECT * FROM MEMBERS WHERE NUMBER = :id", 
+														new MapSqlParameterSource("id", id), 
+														this.memberRowMapper);
+		} catch(EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+	
 	//getMemberMap (note: get a single member)
 	public Map<String, Object> getMemberMap2(String number) {
 		try {
@@ -105,5 +117,33 @@ public class NamedParameterMemberDao {
 	public List<Map<String, Object>> getMemberMapList2(int point) {
 		return this.namedParameterJdbcTemplate.queryForList("SELECT * FROM MEMBERS WHERE POINT > :point", 
 														new MapSqlParameterSource("point", point));
+	}
+	
+	//addMemberList
+	public int[] addMemberList2(final List<Member> memberList) {
+		SqlParameterSource[] sqlParameterSource = new SqlParameterSource[memberList.size()];
+		int i = 0;
+		for (Member member: memberList) {
+			sqlParameterSource[i] = new BeanPropertySqlParameterSource(member);
+			i++;
+		}
+		
+		int[] updateCount = this.namedParameterJdbcTemplate.batchUpdate("INSERT INTO MEMBERS(NUMBER, NAME, POINT) VALUES(:number, :name, :point)", sqlParameterSource);
+		return updateCount;
+	}
+	
+	//udpateMemberList
+	public int[] udpateMemberList2(final List<Map<String, Object>> memberMapList) {
+		SqlParameterSource[] sqlParameterSource = new SqlParameterSource[memberMapList.size()];
+		int i = 0;
+		for (Map<String, Object> memberMap : memberMapList) {
+			sqlParameterSource[i] = new MapSqlParameterSource()
+										.addValue("point", memberMap.get("point"))
+										.addValue("number", memberMap.get("number"));
+			i++;
+		}
+		
+		int[] updateCount = this.namedParameterJdbcTemplate.batchUpdate("UPDATE MEMBERS SET POINT = :point WHERE NUMBER = :number", sqlParameterSource);
+		return updateCount;
 	}
 }
