@@ -40,7 +40,7 @@ public class UserDaoTest {
 	}
 	
 	public static void main(String[] args) {
-		JUnitCore.main("book30.ch02._2._2._dao.UserDaoTest");
+		JUnitCore.main("book30.ch02._2._2.dao.UserDaoTest");
 	}
 
 }
