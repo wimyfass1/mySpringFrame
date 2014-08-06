@@ -13,7 +13,7 @@ public class UserDaoTest {
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
-		//class
+		//class  
 		ApplicationContext context = new AnnotationConfigApplicationContext(DaoFactory.class);
 		//xml
 		//ApplicationContext context = new GenericXmlApplicationContext("book30/ch02/_2/_1/applicationContext.xml");
