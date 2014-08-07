@@ -1,10 +1,10 @@
-package book30.ch02._3._2.dao;
+package book30.ch01._8._3.dao;
 
 import java.sql.*;
 
 import javax.sql.DataSource;
 
-import book30.ch02._3._2.domain.User;
+import book30.ch01._8._3.domain.User;
 
 public class UserDao {
 	private DataSource dataSource;
@@ -45,31 +45,5 @@ public class UserDao {
 		c.close();
 		
 		return user;
-	}
-	
-	public void deleteAll() throws SQLException {
-		Connection c = dataSource.getConnection();
-		
-		PreparedStatement ps = c.prepareStatement("delete from users");
-		ps.execute();
-		
-		ps.close();
-		c.close();
-	}
-	
-	public int getCount() throws SQLException {
-		Connection c = dataSource.getConnection();
-		
-		PreparedStatement ps = c.prepareStatement("select count(*) from users");
-		
-		ResultSet rs = ps.executeQuery();
-		rs.next();
-		int count = rs.getInt(1);
-		
-		rs.close();
-		ps.close();
-		c.close();
-		
-		return count;
 	}
 }

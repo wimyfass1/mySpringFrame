@@ -1,14 +1,15 @@
-package book30.ch01._2._2.dao;
+package book30.ch01._2._3.dao;
 
 import java.sql.SQLException;
 
-import book30.ch01._2._2.domain.User;
+import book30.ch01._2._3.domain.User;
 
 
 public class UserDaoTest {
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
+		/*
 		UserDao dao = new UserDao();
 		
 		User user = new User();
@@ -26,7 +27,7 @@ public class UserDaoTest {
 		System.out.println(user2.getPassword());
 		
 		System.out.println(user2.getId() + "조회 성공");
-		
+		*/
 	}
 
 }

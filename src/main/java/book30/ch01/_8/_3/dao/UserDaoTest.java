@@ -1,16 +1,24 @@
-package book30.ch01._2._2.dao;
+package book30.ch01._8._3.dao;
 
 import java.sql.SQLException;
 
-import book30.ch01._2._2.domain.User;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
+
+import book30.ch01._8._3.domain.User;
 
 
 public class UserDaoTest {
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
-		UserDao dao = new UserDao();
-		
+		//class
+		ApplicationContext context = new AnnotationConfigApplicationContext(DaoFactory.class);
+		//xml
+		//ApplicationContext context = new GenericXmlApplicationContext("book30/ch01/_8/_3/applicationContext.xml");
+		UserDao dao = context.getBean("userDao", UserDao.class);
+
 		User user = new User();
 		user.setId("whiteship");
 		user.setName("백기선");

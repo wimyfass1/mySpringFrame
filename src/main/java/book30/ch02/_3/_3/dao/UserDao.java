@@ -1,10 +1,12 @@
-package book30.ch02._3._2.dao;
+package book30.ch02._3._3.dao;
 
 import java.sql.*;
 
 import javax.sql.DataSource;
 
-import book30.ch02._3._2.domain.User;
+import org.springframework.dao.EmptyResultDataAccessException;
+
+import book30.ch02._3._3.domain.User;
 
 public class UserDao {
 	private DataSource dataSource;
@@ -34,15 +36,20 @@ public class UserDao {
 		ps.setString(1, id);
 		
 		ResultSet rs = ps.executeQuery();
-		rs.next();
-		User user = new User();
-		user.setId(rs.getString("id"));
-		user.setName(rs.getString("name"));
-		user.setPassword(rs.getString("password"));
+		
+		User user = null;
+		if( rs.next()) {
+			user = new User();
+			user.setId(rs.getString("id"));
+			user.setName(rs.getString("name"));
+			user.setPassword(rs.getString("password"));
+		}
 		
 		rs.close();
 		ps.close();
 		c.close();
+		
+		if( user == null) throw new EmptyResultDataAccessException(1);
 		
 		return user;
 	}

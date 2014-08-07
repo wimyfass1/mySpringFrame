@@ -1,20 +1,24 @@
-package book30.ch02._3._2.dao;
+package book30.ch01._7._4.dao;
 
 import java.sql.*;
 
-import javax.sql.DataSource;
-
-import book30.ch02._3._2.domain.User;
+import book30.ch01._7._4.domain.User;
 
 public class UserDao {
-	private DataSource dataSource;
+	private ConnectionMaker connectionMaker;
 	
-	public void setDataSource(DataSource dataSource){
-		this.dataSource = dataSource;
+	public UserDao(ConnectionMaker connectionMaker) {
+		this.connectionMaker = connectionMaker;
 	}
-
+	
+	//List 1-33
+	public void setConnectionMaker(ConnectionMaker connectionMaker){
+		this.connectionMaker = connectionMaker;
+	}
+	//List 1-33 End
+	
 	public void add(User user) throws ClassNotFoundException, SQLException {
-		Connection c = dataSource.getConnection();
+		Connection c = connectionMaker.makeConnection();
 
 		PreparedStatement ps = c.prepareStatement("insert into users(id, name, password) values(?,?,?)");
 		ps.setString(1, user.getId());
@@ -28,7 +32,7 @@ public class UserDao {
 	}
 
 	public User get(String id) throws ClassNotFoundException, SQLException {
-		Connection c = dataSource.getConnection();
+		Connection c = connectionMaker.makeConnection();
 		
 		PreparedStatement ps = c.prepareStatement( "select * from users where id = ?");
 		ps.setString(1, id);
@@ -45,31 +49,5 @@ public class UserDao {
 		c.close();
 		
 		return user;
-	}
-	
-	public void deleteAll() throws SQLException {
-		Connection c = dataSource.getConnection();
-		
-		PreparedStatement ps = c.prepareStatement("delete from users");
-		ps.execute();
-		
-		ps.close();
-		c.close();
-	}
-	
-	public int getCount() throws SQLException {
-		Connection c = dataSource.getConnection();
-		
-		PreparedStatement ps = c.prepareStatement("select count(*) from users");
-		
-		ResultSet rs = ps.executeQuery();
-		rs.next();
-		int count = rs.getInt(1);
-		
-		rs.close();
-		ps.close();
-		c.close();
-		
-		return count;
 	}
 }

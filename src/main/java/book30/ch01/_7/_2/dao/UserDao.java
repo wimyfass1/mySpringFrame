@@ -1,53 +1,32 @@
 package book30.ch01._7._2.dao;
 
-import java.sql.*;
-
-import book30.ch01._7._2.domain.User;
-
 public class UserDao {
+/* 
+
 	private ConnectionMaker connectionMaker;
+	//List 1-24
+	public UserDao() {
+		connectionMaker = new DConnectionMaker();
+	}
 	
+	//List 1-25
 	public UserDao(ConnectionMaker connectionMaker) {
 		this.connectionMaker = connectionMaker;
 	}
 	
-	//List 1-33
-	public void setConnectionMaker(ConnectionMaker connectionMaker){
-		this.connectionMaker = connectionMaker;
+	//List 1-26
+	public UserDao() {
+		DaoFactory daoFactory = new DaoFactory();
+		this.connectionMaker = daoFactory.connectionMaker();
 	}
-	//List 1-33 End
 	
-	public void add(User user) throws ClassNotFoundException, SQLException {
-		Connection c = connectionMaker.makeConnection();
-
-		PreparedStatement ps = c.prepareStatement("insert into users(id, name, password) values(?,?,?)");
-		ps.setString(1, user.getId());
-		ps.setString(2, user.getName());
-		ps.setString(3, user.getPassword());
-
-		ps.executeUpdate();
-
-		ps.close();
-		c.close();		
+	//List 1-27
+	public UserDao() {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DaoFactory.class);
+		this.connectionMaker = context.getBean("connectionMaker", ConnectionMaker.class);
 	}
-
-	public User get(String id) throws ClassNotFoundException, SQLException {
-		Connection c = connectionMaker.makeConnection();
-		
-		PreparedStatement ps = c.prepareStatement( "select * from users where id = ?");
-		ps.setString(1, id);
-		
-		ResultSet rs = ps.executeQuery();
-		rs.next();
-		User user = new User();
-		user.setId(rs.getString("id"));
-		user.setName(rs.getString("name"));
-		user.setPassword(rs.getString("password"));
-		
-		rs.close();
-		ps.close();
-		c.close();
-		
-		return user;
-	}
+	 
+ */
 }
+
+
