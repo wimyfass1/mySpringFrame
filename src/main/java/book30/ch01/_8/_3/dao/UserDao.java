@@ -4,7 +4,7 @@ import java.sql.*;
 
 import javax.sql.DataSource;
 
-import book30.ch01._8._3.domain.User;
+import book30.ch01.domain.User;
 
 public class UserDao {
 	private DataSource dataSource;

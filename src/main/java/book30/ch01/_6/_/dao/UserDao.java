@@ -2,7 +2,7 @@ package book30.ch01._6._.dao;
 
 import java.sql.*;
 
-import book30.ch01._6._.domain.User;
+import book30.ch01.domain.User;
 
 public class UserDao {
 	private ConnectionMaker connectionMaker;

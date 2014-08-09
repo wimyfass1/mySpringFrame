@@ -2,7 +2,7 @@ package book30.ch01._1.dao;
 
 import java.sql.SQLException;
 
-import book30.ch01._1.domain.User;
+import book30.ch01.domain.User;
 
 
 public class UserDaoTest {

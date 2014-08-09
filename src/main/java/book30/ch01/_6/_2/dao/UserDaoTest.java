@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import book30.ch01._6._2.domain.User;
+import book30.ch01.domain.User;
 
 
 public class UserDaoTest {

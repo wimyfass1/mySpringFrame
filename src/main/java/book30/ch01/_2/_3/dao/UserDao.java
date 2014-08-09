@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import book30.ch01._2._3.domain.User;
+import book30.ch01.domain.User;
 
 public abstract class UserDao {
 
