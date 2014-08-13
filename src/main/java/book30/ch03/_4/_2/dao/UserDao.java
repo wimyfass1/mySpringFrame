@@ -6,7 +6,7 @@ import javax.sql.DataSource;
 
 import org.springframework.dao.EmptyResultDataAccessException;
 
-import book30.ch03._4._2.domain.User;
+import book30.ch03.domain.User;
 
 public class UserDao {
 	private DataSource dataSource;

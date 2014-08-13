@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import book30.ch03._4._1.domain.User;
+import book30.ch03.domain.User;
 
 public class AddStatement implements StatementStrategy {
 	User user;

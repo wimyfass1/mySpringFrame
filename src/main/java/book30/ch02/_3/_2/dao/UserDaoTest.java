@@ -10,7 +10,7 @@ import org.junit.runner.JUnitCore;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import book30.ch02._3._2.domain.User;
+import book30.ch02.domain.User;
 
 
 public class UserDaoTest {

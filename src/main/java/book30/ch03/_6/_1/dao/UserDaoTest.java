@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import book30.ch03._6._1.domain.User;
+import book30.ch03.domain.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations="../applicationContext.xml")

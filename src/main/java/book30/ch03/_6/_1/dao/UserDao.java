@@ -12,7 +12,7 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 
-import book30.ch03._6._1.domain.User;
+import book30.ch03.domain.User;
 
 public class UserDao {
 	private DataSource dataSource;

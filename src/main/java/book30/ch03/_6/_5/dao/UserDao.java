@@ -8,7 +8,7 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
-import book30.ch03._6._5.domain.User;
+import book30.ch03.domain.User;
 
 public class UserDao {
 	public void setDataSource(DataSource dataSource){

@@ -6,7 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
-import book30.ch02._2._1.domain.User;
+import book30.ch02.domain.User;
 
 
 public class UserDaoTest {
