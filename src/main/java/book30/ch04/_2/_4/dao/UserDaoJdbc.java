@@ -1,4 +1,4 @@
-package book30.ch03._6._5.dao;
+package book30.ch04._2._4.dao;
 
 import java.sql.*;
 import java.util.List;
@@ -8,9 +8,9 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
-import book30.ch03.domain.User;
+import book30.ch04.domain.User;
 
-public class UserDao {
+public class UserDaoJdbc implements UserDao{
 	public void setDataSource(DataSource dataSource){
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
