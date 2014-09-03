@@ -1,3 +1,6 @@
+CREATE DATABASE IF NOT EXISTS `springbook`;
+USE `springbook`;
+
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` varchar(10) primary key,
