@@ -4,7 +4,6 @@ import java.sql.SQLException;
 
 import book30.ch01.domain.User;
 
-
 public class UserDaoTest {
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {

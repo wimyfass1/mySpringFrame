@@ -6,8 +6,8 @@ import book30.ch01.domain.User;
 
 public class UserDao {
 	private ConnectionMaker connectionMaker;
-	private Connection c;
-	private User user;
+	private Connection c; 	// Problem!!!
+	private User user;		// Problem!!!
 	
 	public UserDao(ConnectionMaker connectionMaker) {
 		this.connectionMaker = connectionMaker;
