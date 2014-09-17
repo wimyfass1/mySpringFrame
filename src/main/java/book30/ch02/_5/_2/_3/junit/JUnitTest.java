@@ -22,6 +22,9 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import book30.ch02.practice.dao.UserDaoFailTest;
+import book30.ch02.practice.dao.UserDaoTest;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations="junit.xml")
 public class JUnitTest {
@@ -55,7 +58,7 @@ public class JUnitTest {
 		testObjects.add(this);
 		
 		//assertThat(contextObject, either(is(nullValue())).or(is(this.contextObject)));
-		assertThat(contextObject, either(is(nullValue(ApplicationContext.class))).or(is(this.contextObject)));
+		assertThat(contextObject, either(is(nullValue(ApplicationContext.class))).or(is(this.context)));
 		contextObject = this.context;
 	}
 	
