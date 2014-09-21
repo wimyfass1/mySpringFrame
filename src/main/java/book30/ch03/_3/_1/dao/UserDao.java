@@ -15,11 +15,6 @@ public class UserDao {
 		this.dataSource = dataSource;
 	}
 
-	public void add(User user) throws ClassNotFoundException, SQLException {
-		StatementStrategy st = new AddStatement(user);
-		jdbcContextWithStatementStrategy(st);
-	}
-
 	public User get(String id) throws ClassNotFoundException, SQLException {
 		Connection c = dataSource.getConnection();
 
@@ -43,6 +38,11 @@ public class UserDao {
 		if( user == null) throw new EmptyResultDataAccessException(1);
 
 		return user;
+	}
+
+	public void add(User user) throws ClassNotFoundException, SQLException {
+		StatementStrategy st = new AddStatement(user);
+		jdbcContextWithStatementStrategy(st);
 	}
 
 	public void deleteAll() throws SQLException {

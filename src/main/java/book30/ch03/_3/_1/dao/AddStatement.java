@@ -21,5 +21,4 @@ public class AddStatement implements StatementStrategy {
 		
 		return ps;
 	}
-
 }

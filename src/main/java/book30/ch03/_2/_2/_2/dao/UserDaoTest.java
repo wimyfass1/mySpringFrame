@@ -20,31 +20,26 @@ import book30.ch03.domain.User;
 public class UserDaoTest {
 	@Autowired
 	private ApplicationContext context;
-	//List 2-19
-	//@Autowired
-	//private UserDao dao;
 	
+	@Autowired
 	private UserDao dao;
+	
 	private User user1;
 	private User user2;
 	private User user3;
 	
 	@Before
 	public void setUp() {
-		this.dao = this.context.getBean("userDao", UserDao.class);
+		this.user1 = new User("gyumee", "박성철", "springno1");
+		this.user2 = new User("leegw700", "이길원", "springno2");
+		this.user3 = new User("bumjin", "박범진", "springno3");		
 	}
 
 	@Test
 	public void addAndGet() throws SQLException, ClassNotFoundException {
-		// TODO Auto-generated method stub
-			
-		this.user1 = new User("gyumee", "박성철", "springno1");
-		this.user2 = new User("leegw700", "이길원", "springno2");
-		
 		dao.deleteAll();
 		assertThat(dao.getCount(), is(0));
-		
-		
+			
 		dao.add(user1);
 		dao.add(user2);
 		assertThat(dao.getCount(), is(2));
@@ -61,11 +56,6 @@ public class UserDaoTest {
 	
 	@Test
 	public void count() throws SQLException, ClassNotFoundException {
-				
-		this.user1 = new User("gyumee", "박성철", "springno1");
-		this.user2 = new User("leegw700", "이길원", "springno2");
-		this.user3 = new User("bumjin", "박범진", "springno3");
-		
 		dao.deleteAll();
 		assertThat(dao.getCount(), is(0));
 		
