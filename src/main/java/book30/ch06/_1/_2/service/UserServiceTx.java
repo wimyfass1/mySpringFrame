@@ -18,10 +18,12 @@ public class UserServiceTx implements UserService {
 		this.transactionManager = transactionManager;
 	}
 	
+	@Override
 	public void add(User user) {
 		this.userService.add(user);
 	}
 	
+	@Override
 	public void upgradeLevels() {
 		TransactionStatus status = this.transactionManager.getTransaction(new DefaultTransactionDefinition());
 		try {

@@ -24,11 +24,13 @@ public class UserServiceImpl implements UserService {
 		this.mailSender = mailSender;
 	}
 	
+	@Override
 	public void add(User user) {
 		if (user.getLevel() == null) user.setLevel(Level.BASIC);
 		userDao.add(user);
 	}
-
+	
+	@Override
 	public void upgradeLevels() {
 		List<User> users = userDao.getAll();
 		for (User user : users) {

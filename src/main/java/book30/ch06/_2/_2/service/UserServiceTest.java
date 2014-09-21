@@ -47,7 +47,8 @@ public class UserServiceTest {
 				);
 	}
 
-	@Test 
+	// 고립시킬 테스트 대상
+	@Test
 	public void upgradeLevels() throws Exception {
 		UserServiceImpl userServiceImpl = new UserServiceImpl(); 
 		

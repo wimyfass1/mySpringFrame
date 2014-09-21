@@ -29,11 +29,20 @@ import book30.ch06.domain.User;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"../ch06_1_2-applicationContext.xml", "../../../ch06-applicationContext.xml"})
 public class UserServiceTest {
-	@Autowired UserService userService;	
-	@Autowired UserServiceImpl userServiceImpl;
-	@Autowired UserDao userDao;
-	@Autowired MailSender mailSender; 
-	@Autowired PlatformTransactionManager transactionManager;
+	@Autowired 
+	private UserService userService;	
+	
+	@Autowired 
+	private UserServiceImpl userServiceImpl;
+	
+	@Autowired 
+	private UserDao userDao;
+	
+	@Autowired 
+	private MailSender mailSender; 
+
+	@Autowired 
+	private PlatformTransactionManager transactionManager;
 	
 	List<User> users;	// test fixture
 	
