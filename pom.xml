@@ -95,6 +95,12 @@
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<!--  for 2.2.2 (2014.09.15) -->
+		<dependency>
+		    <groupId>org.junit</groupId>
+		    <artifactId>com.springsource.org.junit</artifactId>
+		    <version>4.7.0</version>
+		</dependency>
 		
 		<!-- H2 by yhhan -->
 		<dependency>

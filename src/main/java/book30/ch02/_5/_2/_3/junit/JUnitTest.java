@@ -7,8 +7,10 @@ import static org.junit.Assert.assertTrue;
 //import static org.junit.matchers.JUnitMatchers.either;
 import static org.hamcrest.CoreMatchers.either;
 
-import static org.junit.matchers.JUnitMatchers.hasItem;
+//import static org.junit.matchers.JUnitMatchers.hasItem;
+import static org.hamcrest.CoreMatchers.hasItem;
 import static org.junit.Assert.assertThat;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,21 +18,27 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import book30.ch02.practice.dao.UserDaoFailTest;
+import book30.ch02.practice.dao.UserDaoTest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations="junit.xml")
 public class JUnitTest {
-	@Autowired ApplicationContext context;
+	@Autowired 
+	ApplicationContext context;
 	
 	static Set<JUnitTest> testObjects = new HashSet<JUnitTest>();
-	static ApplicationContext  contextObject = null;
+	static ApplicationContext contextObject = null;
 	
 	@Test
 	public void test1() {
 		assertThat(testObjects, not(hasItem(this)));
 		testObjects.add(this);
+
 		assertThat(contextObject == null || contextObject == this.context, is(true));
 		contextObject = this.context;
 	}
@@ -50,7 +58,7 @@ public class JUnitTest {
 		testObjects.add(this);
 		
 		//assertThat(contextObject, either(is(nullValue())).or(is(this.contextObject)));
-		assertThat(contextObject, either(is(nullValue(ApplicationContext.class))).or(is(this.contextObject)));
+		assertThat(contextObject, either(is(nullValue(ApplicationContext.class))).or(is(this.context)));
 		contextObject = this.context;
 	}
 	
