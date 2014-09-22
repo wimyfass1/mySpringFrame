@@ -12,7 +12,8 @@ public class CalcSumTest {
 	Calculator calculator;
 	String numFilepath;
 	
-	@Before public void setUp() {
+	@Before 
+	public void setUp() {
 		this.calculator = new Calculator();
 		this.numFilepath = getClass().getResource("numbers.txt").getPath();
 	}

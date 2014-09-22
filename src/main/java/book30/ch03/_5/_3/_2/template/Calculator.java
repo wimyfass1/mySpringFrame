@@ -39,12 +39,10 @@ public class Calculator {
 			br = new BufferedReader(new FileReader(filepath));
 			int ret = callback.doSomethingWithReader(br);
 			return ret;
-		}
-		catch(IOException e) {
+		} catch(IOException e) {
 			System.out.println(e.getMessage());
 			throw e;
-		}
-		finally {
+		} finally {
 			if (br != null) {
 				try { br.close(); }
 				catch (IOException e) { System.out.println(e.getMessage()); }

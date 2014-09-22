@@ -16,12 +16,10 @@ public class Calculator {
 				sum += Integer.parseInt(line);
 			}
 			return sum;
-		}
-		catch(IOException e) {
+		} catch(IOException e) {
 			System.out.println(e.getMessage());
 			throw e;
-		}
-		finally {
+		} finally {
 			if (br != null) {
 				try { br.close(); }
 				catch (IOException e) { System.out.println(e.getMessage()); }

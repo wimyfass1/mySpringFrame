@@ -23,25 +23,6 @@ public class Calculator {
 		return lineReadTemplate(filepath, multiplyCallback, 1);
 	}
 
-	public Integer fileReadTemplate(String filepath, BufferedReaderCallback callback) throws IOException {
-		BufferedReader br = null;
-		try {
-			br = new BufferedReader(new FileReader(filepath));
-			int ret = callback.doSomethingWithReader(br);
-			return ret;
-		}
-		catch(IOException e) {
-			System.out.println(e.getMessage());
-			throw e;
-		}
-		finally {
-			if (br != null) {
-				try { br.close(); }
-				catch (IOException e) { System.out.println(e.getMessage()); }
-			}
-		}
-	}
-
 	public Integer lineReadTemplate(String filepath, LineCallback callback, int initVal) throws IOException {
 		BufferedReader br = null;
 		try {
@@ -52,12 +33,10 @@ public class Calculator {
 				res = callback.doSomethingWithLine(line, res);
 			}
 			return res;
-		}
-		catch(IOException e) {
+		} catch(IOException e) {
 			System.out.println(e.getMessage());
 			throw e;
-		}
-		finally {
+		} finally {
 			if (br != null) {
 				try { br.close(); }
 				catch (IOException e) { System.out.println(e.getMessage()); }

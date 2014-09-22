@@ -39,10 +39,9 @@ public class UserDao {
 		this.jdbcTemplate.update("delete from users");
 	}
 
-
-
 	public int getCount(){
-		return this.jdbcTemplate.queryForInt("select count(*) from users");
+		//return this.jdbcTemplate.queryForInt("select count(*) from users");
+		return this.jdbcTemplate.queryForObject("select count(*) from users", Integer.class);
 	}
 
 	public List<User> getAll() {
