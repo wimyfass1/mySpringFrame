@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import book30.ch03._3._1.dao.UserDao;
+import book30.ch03._3._2.dao.UserDao;
 import book30.ch03.domain.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
