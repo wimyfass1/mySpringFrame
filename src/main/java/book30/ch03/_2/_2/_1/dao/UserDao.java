@@ -54,34 +54,6 @@ public class UserDao {
 		return user;
 	}
 	
-	public void deleteAll() throws SQLException {
-		Connection c = null;
-		PreparedStatement ps = null;
-		
-		try {
-			c = dataSource.getConnection();
-			
-			ps = makeStatement(c);
-			
-			ps.execute();
-		} catch (SQLException e) {
-			throw e;
-		} finally {
-			if ( ps != null) {
-				try {
-					ps.close();
-				} catch (SQLException e) {
-				}
-			}
-			if ( c != null ) {
-				try {
-					c.close();
-				} catch (SQLException e) {
-				}
-			}
-		}
-	}
-	
 	public int getCount() throws SQLException {
 		Connection c = null;
 		PreparedStatement ps = null;
@@ -119,6 +91,34 @@ public class UserDao {
 		}
 	}
 	
+	
+	public void deleteAll() throws SQLException {
+		Connection c = null;
+		PreparedStatement ps = null;
+		
+		try {
+			c = dataSource.getConnection();
+			
+			ps = makeStatement(c);
+			
+			ps.execute();
+		} catch (SQLException e) {
+			throw e;
+		} finally {
+			if ( ps != null) {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+				}
+			}
+			if ( c != null ) {
+				try {
+					c.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
+	}
 
 	private PreparedStatement makeStatement(Connection c) throws SQLException {
 		PreparedStatement ps;

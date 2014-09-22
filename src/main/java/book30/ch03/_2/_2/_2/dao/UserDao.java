@@ -32,13 +32,13 @@ public class UserDao {
 	public User get(String id) throws ClassNotFoundException, SQLException {
 		Connection c = dataSource.getConnection();
 
-		PreparedStatement ps = c.prepareStatement( "select * from users where id = ?");
+		PreparedStatement ps = c.prepareStatement("select * from users where id = ?");
 		ps.setString(1, id);
 
 		ResultSet rs = ps.executeQuery();
 
 		User user = null;
-		if( rs.next()) {
+		if (rs.next()) {
 			user = new User();
 			user.setId(rs.getString("id"));
 			user.setName(rs.getString("name"));
@@ -52,11 +52,6 @@ public class UserDao {
 		if( user == null) throw new EmptyResultDataAccessException(1);
 
 		return user;
-	}
-
-	public void deleteAll() throws SQLException {
-		StatementStrategy st = new DeleteAllStatement();
-		jdbcContextWithStatementStrategy(st);
 	}
 
 	public int getCount() throws SQLException {
@@ -94,6 +89,11 @@ public class UserDao {
 				}
 			}
 		}
+	}
+	
+	public void deleteAll() throws SQLException {
+		StatementStrategy st = new DeleteAllStatement();
+		jdbcContextWithStatementStrategy(st);
 	}
 
 	public void jdbcContextWithStatementStrategy(StatementStrategy stmt) throws SQLException {

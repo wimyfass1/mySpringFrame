@@ -40,16 +40,6 @@ public class UserDao {
 		return user;
 	}
 
-	public void add(User user) throws ClassNotFoundException, SQLException {
-		StatementStrategy st = new AddStatement(user);
-		jdbcContextWithStatementStrategy(st);
-	}
-
-	public void deleteAll() throws SQLException {
-		StatementStrategy st = new DeleteAllStatement();
-		jdbcContextWithStatementStrategy(st);
-	}
-
 	public int getCount() throws SQLException {
 		Connection c = null;
 		PreparedStatement ps = null;
@@ -85,6 +75,16 @@ public class UserDao {
 				}
 			}
 		}
+	}
+	
+	public void add(User user) throws ClassNotFoundException, SQLException {
+		StatementStrategy st = new AddStatement(user);
+		jdbcContextWithStatementStrategy(st);
+	}
+
+	public void deleteAll() throws SQLException {
+		StatementStrategy st = new DeleteAllStatement();
+		jdbcContextWithStatementStrategy(st);
 	}
 
 	public void jdbcContextWithStatementStrategy(StatementStrategy stmt) throws SQLException {
