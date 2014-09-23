@@ -13,6 +13,7 @@ public class DaoFactory {
 		UserDao userDao = new UserDao();
 		userDao.setDataSource(dataSource());
 		return userDao;
+	
 	}
 	
 	@Bean
@@ -26,6 +27,4 @@ public class DaoFactory {
 		
 		return dataSource;
 	}
-	
-	
 }
